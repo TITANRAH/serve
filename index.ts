@@ -19,6 +19,15 @@ server.app.use( bodyParser.json()); //pasa a formato json
 //FileUpload otro middleware para subir archivos
 server.app.use( fileUpload({useTempFiles: false}) )
 
+//para error en la app
+
+server.app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 //rutas de mi app
 server.app.use('/user', userRoutes)
 server.app.use('/posts', postRoutes)
